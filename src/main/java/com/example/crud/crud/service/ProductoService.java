@@ -1,6 +1,8 @@
 package com.example.crud.crud.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.crud.crud.entity.Producto;
@@ -24,6 +26,10 @@ public class ProductoService {
         return oProductoRepository.save(oProducto);
     }
 
+    // GETALL
+    public Page<Producto> getAll(Pageable pageable){
+        return oProductoRepository.findAll(pageable);
+    }
     // UPDATE
     public Producto update(Producto oProducto) {
         Producto oProductoExistente = oProductoRepository.findById(oProducto.getId()).orElse(null);
